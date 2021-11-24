@@ -9,22 +9,51 @@ public abstract class Shape
     private ArrayList<Line> edges;
 
     // public properties
-
-    // constructors
-    Shape()
-    {
-        vertices.add(Vector2D.zero());
-        edges.add(new Line());
-    }
-
-    Shape(Vector2D[] vertices)
+    public void setVertices(Vector2D[] vertices)
     {
         build(vertices);
     }
 
+    public void setVertex(Vector2D vertex)
+    {
+        Vector2D[] vertices = {vertex};
+        build(vertices);
+//        vertices.clear();
+//        vertices.add(vertex);
+    }
+
+    // constructors
+    // empty constructor
+    Shape()
+    {
+        initialize();
+        vertices.add(Vector2D.zero());
+        edges.add(new Line());
+    }
+
+    // parameterized constructor
+    Shape(Vector2D[] vertices)
+    {
+        //build(vertices);
+        initialize();
+        setVertices(vertices);
+    }
+
     // private methods
+
+    /**
+     * initializes two empty array lists to be used for the Shape class.
+     */
+    private void initialize()
+    {
+        vertices = new ArrayList<Vector2D>();
+        edges = new ArrayList<Line>();
+    }
     private void build(Vector2D[] vertices)
     {
+        this.vertices.clear();
+        this.edges.clear();
+
         // add all vertices to the shape
         for (int i = 0; i < vertices.length; i++)
         {
@@ -42,11 +71,12 @@ public abstract class Shape
             {
                 this.edges.add(new Line(this.vertices.get(i), this.vertices.get(0)));
             }
-
         }
     }
 
     // public methods
+
+    @Override
     public String toString()
     {
         String output_string = "";

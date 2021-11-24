@@ -42,17 +42,17 @@ public class Vector2D
     }
 
     // CONSTRUCTORS
-    Vector2D()
+    public Vector2D()
     {
         set(Vector2D.zero());
     }
 
-    Vector2D(final float x, final float y)
+    public Vector2D(final float x, final float y)
     {
         set(x, y);
     }
 
-    Vector2D(final Vector2D vector)
+    public Vector2D(final Vector2D vector)
     {
         set(vector.getX(), vector.getY());
     }
